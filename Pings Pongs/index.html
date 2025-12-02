@@ -1,0 +1,367 @@
+<!DOCTYPE html> 
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page - Tênis de Mesa</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Ícones -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- jQuery Mask -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+  
+  <!-- Bootstrap Script -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- GLTF Loader -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128/examples/js/loaders/GLTFLoader.js"></script>
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-dark navbar-expand-lg py-3 fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-3" href="#">🏓 ProTableTennis</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto fs-5">
+          <li class="nav-item"><a class="nav-link" href="#beneficios">Benefícios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#formulario">Inscrição</a></li>
+          <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link" href="#comentario">Comentários</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Seção Principal -->
+  <section class="secaoprincipal">
+    <div class="container">
+      <h1 class="display-3 fw-bold">Treinamento de Tênis de Mesa Profissional</h1>
+      <p class="fs-4 mt-3">Aprimore reflexos, técnica, velocidade e precisão.</p>
+      <a href="#formulario" class="btn btn-danger btn-lg mt-4 px-4 py-2">Quero Participar</a>
+    </div>
+
+    <!-- Raquete 3D -->
+    <div id="raquete3d"></div>
+  </section>
+
+  <!-- Benefícios -->
+  <section id="beneficios" class="container">
+    <h2 class="text-center fw-bold mb-5">Por que treinar com a gente?</h2>
+
+    <div class="row g-4">
+
+      <div class="col-md-4">
+        <div class="beneficio-card p-4 text-center rounded">
+          <i class="bi bi-lightning-charge display-4 text-danger mb-3"></i>
+          <h4 class="fw-bold">Reflexos Rápidos</h4>
+          <p>Treinos voltados para reação imediata e agilidade extrema.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="beneficio-card p-4 text-center rounded">
+          <i class="bi bi-people display-4 text-danger mb-3"></i>
+          <h4 class="fw-bold">Treinos em Grupo</h4>
+          <p>Ambiente competitivo e motivador com jogadores de todos os níveis.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="beneficio-card p-4 text-center rounded">
+          <i class="bi bi-trophy display-4 text-danger mb-3"></i>
+          <h4 class="fw-bold">Técnica Profissional</h4>
+          <p>Aprenda golpes e efeitos utilizados em competições oficiais.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Formulário -->
+  <section id="formulario">
+    <div class="container">
+
+      <h2 class="text-center mb-4">Faça Seu Cadastro</h2>
+
+      <div class="col-lg-6 mx-auto">
+
+        <form id="cadastroForm" class="p-4 rounded" style="background:#181818; border:1px solid #303030;">
+
+          <div class="mb-3">
+            <label class="form-label">Nome</label>
+            <input type="text" id="nome" class="form-control" placeholder="Seu nome completo">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">CPF</label>
+            <input type="text" id="cpf" class="form-control" placeholder="000.000.000-00">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">E-mail</label>
+            <input type="email" id="email" class="form-control" placeholder="seuemail@exemplo.com">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Celular</label>
+            <input type="text" id="celular" class="form-control" placeholder="(00) 00000-0000">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Mensagem</label>
+            <textarea id="mensagem" class="form-control" rows="4" placeholder="Digite sua mensagem..."></textarea>
+          </div>
+
+        <!-- Botão Enviar -->
+            <button type="submit" class="btn btn-danger w-100 mb-2">
+                Enviar Cadastro
+            </button>
+
+        <!-- Botão Limpar -->
+            <button type="reset" class="btn btn-limpar w-100">
+                Limpar formulário
+            </button>
+
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal fade" id="sucessoModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title">Cadastro Concluído</h5>
+        </div>
+        <div class="modal-body">
+          Seu cadastro foi realizado com sucesso!
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-dark" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sobre -->
+  <section id="sobre" class="container">
+    <h2 class="text-center fw-bold mb-4">Sobre o Projeto</h2>
+    <p class="fs-5 text-center">
+      Nosso treinamento de tênis de mesa foi criado para ajudar jogadores 
+      de todos os níveis a evoluírem rápido, com técnicas modernas, treinos 
+      eficientes e acompanhamento profissional.
+    </p>
+  </section>
+
+  <!-- Comentários -->
+  <section id="comentario" class="container mt-5">
+
+    <h2 class="text-center fw-bold mb-4">Comentários</h2>
+
+    <div class="row g-4">
+
+      <div class="col-md-4">
+        <div class="p-3 rounded comentario-card text-center">
+          <img src="Hugo Calderano.jpg" class="perfil-img mb-3" alt="Foto de perfil">
+          <p class="fw-bold small">Hugo Calderano</p>
+          <p class="small">"Quando eu crescer quero ser igual a esse menino."</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="p-3 rounded comentario-card text-center">
+          <img src="Matheus Calixto.jpg" class="perfil-img mb-3" alt="Foto de perfil">
+          <p class="fw-bold small">Matheus Calixto</p>
+          <p class="small">"Como eu comecei agora, ainda sou Betinha, mas vejo futuro."</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="p-3 rounded comentario-card text-center">
+          <img src="Bruna Takahashi.jpg" class="perfil-img mb-3" alt="Foto de perfil">
+          <p class="fw-bold small">Bruna Takahashi</p>
+          <p class="small">"Se você quer jogar bem de verdade, vem treinar aqui."</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer class="text-light py-5 text-center">
+    <h3 class="fw-bold mb-3">🏓 ProTableTennis</h3>
+
+    <p>Email: contatoprotabletennis@gmail.com</p>
+    <p>Whatsapp: (13) 99999-9999</p>
+
+    <div class="d-flex justify-content-center gap-4 fs-3 my-3">
+      <a href="#" class="text-light"><i class="bi bi-instagram"></i></a>
+      <a href="#" class="text-light"><i class="bi bi-facebook"></i></a>
+      <a href="#" class="text-light"><i class="bi bi-youtube"></i></a>
+    </div>
+
+    <p class="mt-4 mb-0">&copy; 2025 ProTableTennis • Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+
+    // Máscaras
+    $('#cpf').mask('000.000.000-00');
+    $('#celular').mask('(00) 00000-0000');
+
+
+    // Parte da Validação do CPF
+    function validarCPF(cpf) {
+        cpf = cpf.replace(/\D/g, "");
+
+        if (cpf.length !== 11) return false;
+        if (/^(\d)\1+$/.test(cpf)) return false;
+
+        let soma = 0;
+
+        for (let i = 0; i < 9; i++) {
+            soma += parseInt(cpf[i]) * (10 - i);
+        }
+
+        let dig1 = 11 - (soma % 11);
+        if (dig1 >= 10) dig1 = 0;
+
+        soma = 0;
+        for (let i = 0; i < 10; i++) {
+            soma += parseInt(cpf[i]) * (11 - i);
+        }
+
+        let dig2 = 11 - (soma % 11);
+        if (dig2 >= 10) dig2 = 0;
+
+        return dig1 == cpf[9] && dig2 == cpf[10];
+    }
+
+
+    // Função geral para marcar campos válidos/ inválidos
+    function validarCampo(campo, condicao) {
+        if (condicao) {
+            campo.removeClass("invalid").addClass("valid");
+            return true;
+        } else {
+            campo.removeClass("valid").addClass("invalid");
+            return false;
+        }
+    }
+
+
+    // SUBMIT DO FORMULÁRIO
+    $("#cadastroForm").on("submit", function(e) {
+        e.preventDefault();
+
+        let nome = $("#nome");
+        let cpf = $("#cpf");
+        let email = $("#email");
+        let celular = $("#celular");
+        let mensagem = $("#mensagem");
+
+        let validNome = validarCampo(nome, nome.val().length > 2);
+        let validCPF = validarCampo(cpf, validarCPF(cpf.val()));
+        let validEmail = validarCampo(email, email.val().includes("@") && email.val().includes("."));
+        let validCelular = validarCampo(celular, celular.val().length === 15);
+        let validMensagem = validarCampo(mensagem, mensagem.val().length > 3);
+
+        if (validNome && validCPF && validEmail && validCelular && validMensagem) {
+            new bootstrap.Modal(document.getElementById('sucessoModal')).show();
+        } else {
+            alert("Verifique os campos inválidos!");
+        }
+    });
+
+  </script>
+
+  <script>
+  // Remover classes de validação ao limpar
+    $("#cadastroForm").on("reset", function () {
+      setTimeout(() => {
+          $("#cadastroForm input, #cadastroForm textarea")
+              .removeClass("valid invalid");
+        }, 10);
+    });
+  </script>
+
+
+  <!-- SCRIPT RAQUETE 3D -->
+  <script>
+
+    const container = document.getElementById("raquete3d");
+
+    const scene = new THREE.Scene();
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 1000);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(width, height);
+    renderer.setClearColor(0x000000, 0);
+    container.appendChild(renderer.domElement);
+
+    const light1 = new THREE.DirectionalLight(0xffffff, 1);
+    light1.position.set(5, 5, 5);
+    scene.add(light1);
+
+    const light2 = new THREE.AmbientLight(0xffffff, 0.7);
+    scene.add(light2);
+
+    const loader = new THREE.GLTFLoader();
+
+    loader.load(
+      "Raquete_Ping_Pong_3D.glb",
+      function (gltf) {
+          const model = gltf.scene;
+
+          model.scale.set(2.2, 2.2, 2.2);
+          model.rotation.y = Math.PI;
+          scene.add(model);
+
+          function animate() {
+              requestAnimationFrame(animate);
+              model.rotation.y += 0.01;
+              renderer.render(scene, camera);
+          }
+
+          animate();
+      },
+      undefined,
+      function (error) {
+          console.error("Erro ao carregar modelo:", error);
+      }
+    );
+
+    camera.position.z = 7;
+
+  </script>
+
+</body>
+
+</html>
